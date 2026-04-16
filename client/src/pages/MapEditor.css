@@ -1,0 +1,62 @@
+.editor-layout {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+.editor-sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  padding: 1rem;
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.back-btn { margin-bottom: 1rem; width: fit-content; }
+
+.sidebar-section {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar-section:last-child { border-bottom: none; }
+
+.sidebar-section h2 { font-size: 1rem; margin-bottom: 1rem; }
+.sidebar-section h3 { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.save-btn { width: 100%; margin-top: 0.5rem; }
+
+.export-btns { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.success-msg {
+  background: rgba(34,197,94,0.1);
+  border: 1px solid var(--success);
+  border-radius: var(--radius);
+  color: var(--success);
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.tips {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.editor-map { flex: 1; position: relative; }
+
+/* Ensure leaflet controls are visible on dark background */
+.leaflet-control-zoom a,
+.leaflet-draw-toolbar a {
+  background-color: #fff !important;
+  color: #333 !important;
+}
