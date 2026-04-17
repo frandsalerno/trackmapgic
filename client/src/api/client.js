@@ -8,4 +8,17 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Download a file from an authenticated endpoint
+export async function downloadFile(path, filename) {
+  const res = await api.get(path, { responseType: 'blob' });
+  const url = URL.createObjectURL(res.data);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
 export default api;

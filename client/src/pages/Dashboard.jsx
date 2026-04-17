@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/client';
+import api, { downloadFile } from '../api/client';
 import './Dashboard.css';
 
 export default function Dashboard() {
@@ -21,8 +21,10 @@ export default function Dashboard() {
     setMaps((prev) => prev.filter((m) => m._id !== id));
   }
 
-  function handleExport(id, format) {
-    window.open(`/api/maps/${id}/export?format=${format}`, '_blank');
+  function handleExport(map, format) {
+    const ext = format === 'gpx' ? 'gpx' : 'geojson';
+    const filename = `${map.name.replace(/\s+/g, '_')}.${ext}`;
+    downloadFile(`/maps/${map._id}/export?format=${format}`, filename);
   }
 
   return (
@@ -51,8 +53,8 @@ export default function Dashboard() {
             </div>
             <div className="map-card-actions">
               <button className="btn-secondary" onClick={() => navigate(`/maps/${map._id}`)}>Edit</button>
-              <button className="btn-secondary" onClick={() => handleExport(map._id, 'geojson')}>GeoJSON</button>
-              <button className="btn-secondary" onClick={() => handleExport(map._id, 'gpx')}>GPX</button>
+              <button className="btn-secondary" onClick={() => handleExport(map, 'geojson')}>GeoJSON</button>
+              <button className="btn-secondary" onClick={() => handleExport(map, 'gpx')}>GPX</button>
               <button className="btn-danger" onClick={() => handleDelete(map._id)}>Delete</button>
             </div>
           </div>

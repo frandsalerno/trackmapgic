@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FeatureGroup, MapContainer, TileLayer, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet-draw';
-import api from '../api/client';
+import api, { downloadFile } from '../api/client';
 import './MapEditor.css';
 
 // Fixes Leaflet default icon paths broken by Vite's asset handling
@@ -128,7 +128,9 @@ export default function MapEditor() {
 
   function handleExport(format) {
     if (!savedId) { setError('Save the map first before exporting.'); return; }
-    window.open(`/api/maps/${savedId}/export?format=${format}`, '_blank');
+    const ext = format === 'gpx' ? 'gpx' : 'geojson';
+    const filename = `${(name || 'track').replace(/\s+/g, '_')}.${ext}`;
+    downloadFile(`/maps/${savedId}/export?format=${format}`, filename);
   }
 
   return (

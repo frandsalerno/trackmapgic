@@ -18,6 +18,7 @@ export default function Navbar() {
         {user ? (
           <>
             <Link to="/dashboard">My Maps</Link>
+            <Link to="/upload"><button className="btn-primary">Upload SVG</button></Link>
             <span className="navbar-user">{user.name}</span>
             <button onClick={handleLogout} className="btn-secondary">Logout</button>
           </>

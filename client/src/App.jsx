@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import MapEditor from './pages/MapEditor';
+import Upload from './pages/Upload';
 import { useAuth } from './context/AuthContext';
 
 export default function App() {
@@ -30,6 +31,10 @@ export default function App() {
         <Route
           path="/maps/:id"
           element={<ProtectedRoute><MapEditor /></ProtectedRoute>}
+        />
+        <Route
+          path="/upload"
+          element={<ProtectedRoute><Upload /></ProtectedRoute>}
         />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

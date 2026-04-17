@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const authRoutes = require('./routes/auth');
 const mapsRoutes = require('./routes/maps');
+const convertRoutes = require('./routes/convert');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/maps', mapsRoutes);
+app.use('/api/convert', convertRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
